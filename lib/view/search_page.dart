@@ -136,7 +136,7 @@ class _SearchPageState extends State<SearchPage> {
                     cursorColor: isDay == false
                         ? Color.fromARGB(255, 151, 194, 250)
                         : Colors.black,
-                    onSubmitted: (value) => handleSearch(value.toString()),
+                    onSubmitted: (value) => handleSearch(value),
                   ),
                   SizedBox(
                     height: 30,
