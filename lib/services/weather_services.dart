@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
@@ -15,7 +16,9 @@ class WeatherServices {
         Uri.parse('$baseUrl?q=$cityName&appid=$weatherApiKey&units=metric'));
 
     if (response.statusCode == 200) {
-      return Weather.fromJson(jsonDecode(response.body));
+      var data = Weather.fromJson(jsonDecode(response.body));
+      log(data.toString());
+      return data;
     } else {
       throw Exception('Failed to load weather data');
     }

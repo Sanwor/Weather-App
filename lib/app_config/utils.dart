@@ -1,5 +1,8 @@
+import 'package:intl/intl.dart';
+
 class AppUtils {
-  getDayOrNightFromOffset(int offsetInSeconds) { // OffsetInSeconds accepts timezone code of a certain city
+  dynamic getDayOrNightFromOffset(int offsetInSeconds) {
+    // OffsetInSeconds accepts timezone code of a certain city
     // Get current UTC time
     final nowUtc = DateTime.now().toUtc();
 
@@ -11,5 +14,11 @@ class AppUtils {
 
     return isDay;
   }
-}
 
+  String formatUnixToLocalTime(int unixSeconds) {
+    // Convert seconds to milliseconds
+    DateTime dateTime =
+        DateTime.fromMillisecondsSinceEpoch(unixSeconds * 1000).toLocal();
+    return DateFormat('HH:mm:ss').format(dateTime);
+  }
+}

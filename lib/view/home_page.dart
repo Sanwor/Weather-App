@@ -1,6 +1,10 @@
+import 'dart:isolate';
+
+import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:weather_app/app_config/utils.dart';
 import 'package:weather_app/services/weather_services.dart';
 import 'package:weather_app/view/search_page.dart';
 
@@ -148,7 +152,8 @@ class _HomePageState extends State<HomePage> {
                           ]
                         : [
                             Color.fromARGB(255, 2, 18, 38), // light sky blue
-                            Color.fromARGB(255, 32, 68, 134), // very light blue/white
+                            Color.fromARGB(
+                                255, 32, 68, 134), // very light blue/white
                           ]),
               ),
               child: RefreshIndicator(
@@ -205,77 +210,168 @@ class _HomePageState extends State<HomePage> {
                               )),
                         ),
 
-                        Text('My Location',
-                            style: GoogleFonts.pressStart2p(
-                              textStyle: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.w500,
-                                  color: time >= 6 && time < 18
-                                      ? Colors.black87
-                                      : Colors.white),
-                            )),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        //city name
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.location_on,
-                              color: const Color.fromARGB(255, 236, 24, 9),
-                              size: 20,
-                            ),
-                            SizedBox(width: 5),
-                            Text((_weather.cityName),
-                                style: GoogleFonts.pressStart2p(
-                                  textStyle: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400,
-                                      color: time >= 6 && time < 18
-                                          ? Colors.black87
-                                          : Colors.white),
-                                )),
-                          ],
-                        ),
+                        _weather == null
+                            ? SizedBox(
+                                height: 500,
+                                child: Text("No Data Found"),
+                              )
+                            : Column(
+                                children: [
+                                  Text('My Location',
+                                      style: GoogleFonts.pressStart2p(
+                                        textStyle: TextStyle(
+                                            fontSize: 22,
+                                            fontWeight: FontWeight.w500,
+                                            color: time >= 6 && time < 18
+                                                ? Colors.black87
+                                                : Colors.white),
+                                      )),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  //city name
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.location_on,
+                                        color: const Color.fromARGB(
+                                            255, 236, 24, 9),
+                                        size: 20,
+                                      ),
+                                      SizedBox(width: 5),
+                                      Text((_weather?.cityName) ?? "",
+                                          style: GoogleFonts.pressStart2p(
+                                            textStyle: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w400,
+                                                color: time >= 6 && time < 18
+                                                    ? Colors.black87
+                                                    : Colors.white),
+                                          )),
+                                    ],
+                                  ),
 
-                        //weather animation
-                        Lottie.asset(
-                            getWeatherAnimation(_weather?.mainCondition)),
+                                  //weather animation
+                                  Lottie.asset(getWeatherAnimation(
+                                      _weather?.mainCondition)),
 
-                        //temperature
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.thermostat_outlined,
-                              color: time >= 6 && time < 18
-                                  ? Colors.black
-                                  : Colors.white,
-                              size: 50,
-                            ),
-                            Text(
-                              ('${_weather.temperature.round()}°C'),
-                              style: GoogleFonts.pressStart2p(
-                                  textStyle: TextStyle(
-                                      fontSize: 35,
-                                      color: time >= 6 && time < 18
-                                          ? Colors.black
-                                          : Colors.white)),
-                            ),
-                          ],
-                        ),
+                                  //temperature
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.thermostat_outlined,
+                                        color: time >= 6 && time < 18
+                                            ? Colors.black
+                                            : Colors.white,
+                                        size: 50,
+                                      ),
+                                      Text(
+                                        ('${_weather.temperature.round()}°C'),
+                                        style: GoogleFonts.pressStart2p(
+                                            textStyle: TextStyle(
+                                                fontSize: 35,
+                                                color: time >= 6 && time < 18
+                                                    ? Colors.black
+                                                    : Colors.white)),
+                                      ),
+                                    ],
+                                  ),
 
-                        //weather conditions
-                        Text(
-                          (_weather?.mainCondition) ?? "",
-                          style: GoogleFonts.pressStart2p(
-                              textStyle: TextStyle(
-                                  fontSize: 15,
-                                  color: time >= 6 && time < 18
-                                      ? Colors.black
-                                      : Colors.white)),
-                        ),
+                                  //weather conditions
+                                  Text(
+                                    (_weather?.mainCondition) ?? "",
+                                    style: GoogleFonts.pressStart2p(
+                                        textStyle: TextStyle(
+                                            fontSize: 15,
+                                            color: time >= 6 && time < 18
+                                                ? Colors.black
+                                                : Colors.white)),
+                                  ),
+
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      //sunrise container
+                                      BlurryContainer(
+                                        blur: 5,
+                                        width: 150,
+                                        height: 150,
+                                        elevation: 1,
+                                        color: Colors.transparent,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                              'assets/sunrise.png',
+                                              height: 60,
+                                              width: double.infinity,
+                                            ),
+                                            Text(
+                                              'dawn:',
+                                              style: TextStyle(fontSize: 15),
+                                            ),
+                                            Text(
+                                              (AppUtils().formatUnixToLocalTime(
+                                                  _weather.sunrise.round())),
+                                              style: GoogleFonts.pressStart2p(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 15,
+                                                      color:
+                                                          time >= 6 && time < 18
+                                                              ? Colors.black
+                                                              : Colors.white)),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      //sunset container
+                                      BlurryContainer(
+                                        blur: 5,
+                                        width: 150,
+                                        height: 150,
+                                        elevation: 1,
+                                        color: Colors.transparent,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                              'assets/sunset.png',
+                                              height: 50,
+                                              width: double.infinity,
+                                            ),
+                                            Text(
+                                              'dusk:',
+                                              style: TextStyle(fontSize: 15),
+                                            ),
+                                            Text(
+                                              (AppUtils().formatUnixToLocalTime(
+                                                  _weather.sunset.round())),
+                                              style: GoogleFonts.pressStart2p(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 15,
+                                                      color:
+                                                          time >= 6 && time < 18
+                                                              ? Colors.black
+                                                              : Colors.white)),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
                       ],
                     ),
                   ),

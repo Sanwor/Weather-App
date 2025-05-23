@@ -1,3 +1,4 @@
+import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -266,6 +267,98 @@ class _SearchPageState extends State<SearchPage> {
                                                       ? Color.fromARGB(
                                                           255, 151, 194, 250)
                                                       : Colors.black))),
+
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          //sunrise container
+                                          BlurryContainer(
+                                            blur: 5,
+                                            width: 150,
+                                            height: 150,
+                                            elevation: 2,
+                                            color: Colors.transparent,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                  'assets/sunrise.png',
+                                                  height: 60,
+                                                  width: double.infinity,
+                                                ),
+                                                Text(
+                                                  'dawn:',
+                                                  style:
+                                                      TextStyle(fontSize: 15),
+                                                ),
+                                                Text(
+                                                  (AppUtils()
+                                                      .formatUnixToLocalTime(
+                                                          _weather.sunrise
+                                                              .round())),
+                                                  style:
+                                                      GoogleFonts.pressStart2p(
+                                                          textStyle: TextStyle(
+                                                              fontSize: 15,
+                                                              color: isDay ==
+                                                                      true
+                                                                  ? Colors.black
+                                                                  : Colors
+                                                                      .white)),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          //sunset container
+                                          BlurryContainer(
+                                            blur: 5,
+                                            width: 150,
+                                            height: 150,
+                                            elevation: 2,
+                                            color: Colors.transparent,
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Image.asset(
+                                                  'assets/sunset.png',
+                                                  height: 50,
+                                                  width: double.infinity,
+                                                ),
+                                                Text(
+                                                  'dusk:',
+                                                  style:
+                                                      TextStyle(fontSize: 15),
+                                                ),
+                                                Text(
+                                                  (AppUtils()
+                                                      .formatUnixToLocalTime(
+                                                          _weather.sunset
+                                                              .round())),
+                                                  style:
+                                                      GoogleFonts.pressStart2p(
+                                                          textStyle: TextStyle(
+                                                              fontSize: 15,
+                                                              color: isDay ==
+                                                                      true
+                                                                  ? Colors.black
+                                                                  : Colors
+                                                                      .white)),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      )
                                     ],
                                   ),
                           ],
@@ -277,7 +370,7 @@ class _SearchPageState extends State<SearchPage> {
         ));
   }
 
-  // Handel Search
+  // Handle Search
   handleSearch(value) async {
     setState(() {
       isLoading = true;
