@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather_app/view/home_page.dart';
 
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
