@@ -186,7 +186,7 @@ class _SearchPageState extends State<SearchPage> {
                                                 ? Color.fromARGB(
                                                     255, 151, 194, 250)
                                                 : Color(0xff243447),
-                                            fontSize: 12,
+                                            fontSize: 15,
                                           ),
                                         )
                                       ],
@@ -625,6 +625,10 @@ class _SearchPageState extends State<SearchPage> {
                                                       Text(
                                                         'hPa',
                                                         style: TextStyle(
+                                                            color: isDay == true
+                                                                ? Color(
+                                                                    0xff243447)
+                                                                : Colors.white,
                                                             fontWeight:
                                                                 FontWeight
                                                                     .w600),

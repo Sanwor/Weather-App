@@ -490,14 +490,8 @@ class _HomePageState extends State<HomePage> {
                                                             Text(
                                                               '${_weather.windSpeed}',
                                                               style: TextStyle(
-                                                                  color: time >=
-                                                                              6 &&
-                                                                          time <
-                                                                              18
-                                                                      ? Color(
-                                                                          0xff243447)
-                                                                      : Colors
-                                                                          .white,
+                                                                  color: Colors
+                                                                      .white,
                                                                   fontSize: 40),
                                                             ),
                                                             Column(
@@ -570,9 +564,25 @@ class _HomePageState extends State<HomePage> {
                                                       ],
                                                     ),
                                                     SizedBox(width: 20),
-                                                    Image.asset(
-                                                      'assets/compass.png',
-                                                      height: 110,
+                                                    Stack(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      children: [
+                                                        Image.asset(
+                                                          'assets/compass.png',
+                                                          height: 110,
+                                                        ),
+                                                        Transform.rotate(
+                                                            angle: _weather
+                                                                .windDeg,
+                                                            child: Text(
+                                                              "|",
+                                                              style: TextStyle(
+                                                                  fontSize: 35,
+                                                                  color: Colors
+                                                                      .red),
+                                                            )),
+                                                      ],
                                                     )
                                                   ],
                                                 )
@@ -665,6 +675,10 @@ class _HomePageState extends State<HomePage> {
                                                 Text(
                                                   'hPa',
                                                   style: TextStyle(
+                                                      color: time >= 6 &&
+                                                              time < 18
+                                                          ? Color(0xff243447)
+                                                          : Colors.white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 )
