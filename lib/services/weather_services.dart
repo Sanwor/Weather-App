@@ -52,6 +52,30 @@ class WeatherServices {
     if (response.statusCode == 200) {
       return Weather.fromJson(jsonDecode(response.body));
     } else {
+      if (response.statusCode == 401) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          content: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: Container(
+                color: const Color(0xff8678cd),
+                height: 60,
+                width: double.infinity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Unauthorized " +
+                          jsonDecode(response.body)["message"].toString(),
+                      style: TextStyle(fontSize: 10),
+                    ),
+                  ],
+                )),
+          ),
+        ));
+      }
       var mySnackBar = SnackBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,

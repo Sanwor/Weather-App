@@ -122,17 +122,16 @@ class _HomePageState extends State<HomePage> {
                           child: Column(
                         children: [
                           CircularProgressIndicator(
-                            color: Colors.black,
+                            color: Color(0xff243447),
                           ),
                           SizedBox(
                             height: 10,
                           ),
-                          Text(
-                            'Loading...',
-                            style: GoogleFonts.pressStart2p(
+                          Text('Loading...',
+                              style: GoogleFonts.pressStart2p(
                                 textStyle: TextStyle(
-                                    fontSize: 12, color: Colors.black)),
-                          )
+                                    fontSize: 12, color: Color(0xff243447)),
+                              ))
                         ],
                       ))
                     ]),
@@ -156,226 +155,580 @@ class _HomePageState extends State<HomePage> {
                                 255, 32, 68, 134), // very light blue/white
                           ]),
               ),
-              child: RefreshIndicator(
-                color: Colors.black,
-                onRefresh: () async {
-                  return await Future.delayed(const Duration(seconds: 1), () {
-                    initialise();
-                  });
-                },
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height,
-                  child: SingleChildScrollView(
-                    physics: AlwaysScrollableScrollPhysics(
-                        parent: BouncingScrollPhysics()),
-                    child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        //searchbar
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => SearchPage()));
-                          },
+              child: Column(
+                children: [
+                  //searchbar
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => SearchPage()));
+                    },
+                    child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 50, right: 50, top: 50, bottom: 20),
+                        child: Container(
+                          height: 60,
+                          width: 350,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: time >= 6 && time < 18
+                                    ? Color(0xff243447)
+                                    : Color.fromARGB(255, 151, 194, 250)),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                            color: Colors.transparent,
+                          ),
                           child: Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 50, right: 50, top: 50, bottom: 100),
-                              child: Container(
-                                height: 60,
-                                width: 350,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: time >= 6 && time < 18
-                                          ? Colors.black
-                                          : Color.fromARGB(255, 151, 194, 250)),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(30)),
-                                  color: Colors.transparent,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: Checkbox.width,
-                                      left: Checkbox.width),
-                                  child: Text(
-                                    'search',
-                                    style: GoogleFonts.pressStart2p(
-                                        textStyle: TextStyle(
-                                            color: time >= 6 && time < 18
-                                                ? Colors.black
-                                                : Colors.white,
-                                            fontSize: 10)),
-                                  ),
-                                ),
-                              )),
-                        ),
-
-                        _weather == null
-                            ? SizedBox(
-                                height: 500,
-                                child: Text("No Data Found"),
-                              )
-                            : Column(
-                                children: [
-                                  Text('My Location',
-                                      style: GoogleFonts.pressStart2p(
-                                        textStyle: TextStyle(
-                                            fontSize: 22,
-                                            fontWeight: FontWeight.w500,
-                                            color: time >= 6 && time < 18
-                                                ? Colors.black87
-                                                : Colors.white),
-                                      )),
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  //city name
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.location_on,
-                                        color: const Color.fromARGB(
-                                            255, 236, 24, 9),
-                                        size: 20,
-                                      ),
-                                      SizedBox(width: 5),
-                                      Text((_weather?.cityName) ?? "",
-                                          style: GoogleFonts.pressStart2p(
-                                            textStyle: TextStyle(
-                                                fontSize: 15,
+                            padding: const EdgeInsets.only(
+                                top: Checkbox.width, left: Checkbox.width),
+                            child: Text(
+                              'search',
+                              style: TextStyle(
+                                  color: time >= 6 && time < 18
+                                      ? Color(0xff243447)
+                                      : Colors.white,
+                                  fontSize: 15),
+                            ),
+                          ),
+                        )),
+                  ),
+                  // Body Content
+                  Expanded(
+                    child: RefreshIndicator(
+                      color: Color(0xff243447),
+                      onRefresh: () async {
+                        return await Future.delayed(const Duration(seconds: 1),
+                            () {
+                          initialise();
+                        });
+                      },
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height,
+                        child: SingleChildScrollView(
+                          physics: AlwaysScrollableScrollPhysics(
+                              parent: BouncingScrollPhysics()),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Column(
+                              // mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                _weather == null
+                                    ? SizedBox(
+                                        height: 500,
+                                        child: Text("No Data Found"),
+                                      )
+                                    : Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'My Location',
+                                            style: TextStyle(
+                                                fontSize: 30,
                                                 fontWeight: FontWeight.w400,
                                                 color: time >= 6 && time < 18
-                                                    ? Colors.black87
+                                                    ? Color(0xff243447)
                                                     : Colors.white),
-                                          )),
-                                    ],
-                                  ),
+                                          ),
 
-                                  //weather animation
-                                  Lottie.asset(getWeatherAnimation(
-                                      _weather?.mainCondition)),
-
-                                  //temperature
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.thermostat_outlined,
-                                        color: time >= 6 && time < 18
-                                            ? Colors.black
-                                            : Colors.white,
-                                        size: 50,
-                                      ),
-                                      Text(
-                                        ('${_weather.temperature.round()}°C'),
-                                        style: GoogleFonts.pressStart2p(
-                                            textStyle: TextStyle(
-                                                fontSize: 35,
+                                          // city name
+                                          Text(
+                                            (_weather?.cityName) ?? "",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w400,
                                                 color: time >= 6 && time < 18
-                                                    ? Colors.black
-                                                    : Colors.white)),
+                                                    ? Color(0xff243447)
+                                                    : Colors.white),
+                                          ),
+
+                                          //temperature
+                                          Text(
+                                            ('${_weather.temperature.round()}°'),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.normal,
+                                                fontSize: 90,
+                                                color: time >= 6 && time < 18
+                                                    ? Color(0xff243447)
+                                                    : Colors.white),
+                                          ),
+
+                                          //weather conditions
+                                          Text(
+                                            (_weather?.mainCondition) ?? "",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600,
+                                                color: time >= 6 && time < 18
+                                                    ? Color(0xff243447)
+                                                    : Colors.white),
+                                          ),
+
+                                          //High Low
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                ('H:${_weather.tempMax.round()}°') ??
+                                                    "",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 15,
+                                                    color:
+                                                        time >= 6 && time < 18
+                                                            ? Color(0xff243447)
+                                                            : Colors.white),
+                                              ),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text(
+                                                ('L:${_weather.tempMin.round()}°') ??
+                                                    "",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 15,
+                                                    color:
+                                                        time >= 6 && time < 18
+                                                            ? Color(0xff243447)
+                                                            : Colors.white),
+                                              ),
+                                            ],
+                                          ),
+
+                                          //feels like
+                                          Text(
+                                            ('Feels like: ${_weather.feelsLike.round()}°C'),
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: time >= 6 && time < 18
+                                                    ? Color(0xff243447)
+                                                    : Colors.white),
+                                          ),
+
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+
+                                          //weather animation
+                                          BlurryContainer(
+                                            blur: 5,
+                                            width: double.infinity,
+                                            height: 150,
+                                            elevation: 1,
+                                            color: Colors.transparent,
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  'Condition Right now:',
+                                                  style: TextStyle(
+                                                      color: time >= 6 &&
+                                                              time < 18
+                                                          ? Color(0xff243447)
+                                                          : Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                                Lottie.asset(
+                                                    getWeatherAnimation(_weather
+                                                        ?.mainCondition),
+                                                    height: 100),
+                                              ],
+                                            ),
+                                          ),
+
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+
+                                          //sunset sunrise
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              //sunrise container
+                                              Expanded(
+                                                child: BlurryContainer(
+                                                  blur: 5,
+                                                  width: 150,
+                                                  height: 150,
+                                                  elevation: 1,
+                                                  color: Colors.transparent,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        'dawn:',
+                                                        style: TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: time >= 6 &&
+                                                                    time < 18
+                                                                ? Color(
+                                                                    0xff243447)
+                                                                : Colors.white),
+                                                      ),
+                                                      Image.asset(
+                                                        'assets/sunrise.png',
+                                                        height: 70,
+                                                        width: double.infinity,
+                                                      ),
+                                                      Text(
+                                                        (AppUtils()
+                                                            .formatUnixToLocalTime(
+                                                                _weather.sunrise
+                                                                    .round())),
+                                                        style: TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            color: time >= 6 &&
+                                                                    time < 18
+                                                                ? Color(
+                                                                    0xff243447)
+                                                                : Colors.white),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+
+                                              SizedBox(
+                                                width: 20,
+                                              ),
+                                              //sunset container
+                                              Expanded(
+                                                child: BlurryContainer(
+                                                  blur: 5,
+                                                  width: 150,
+                                                  height: 150,
+                                                  elevation: 1,
+                                                  color: Colors.transparent,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        'dusk:',
+                                                        style: TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: time >= 6 &&
+                                                                    time < 18
+                                                                ? Color(
+                                                                    0xff243447)
+                                                                : Colors.white),
+                                                      ),
+                                                      Image.asset(
+                                                        'assets/sunset.png',
+                                                        height: 70,
+                                                        width: double.infinity,
+                                                      ),
+                                                      Text(
+                                                        (AppUtils()
+                                                            .formatUnixToLocalTime(
+                                                                _weather.sunset
+                                                                    .round())),
+                                                        style: TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            color: time >= 6 &&
+                                                                    time < 18
+                                                                ? Color(
+                                                                    0xff243447)
+                                                                : Colors.white),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+
+                                          SizedBox(height: 20),
+
+                                          //wind
+                                          BlurryContainer(
+                                            blur: 5,
+                                            width: double.infinity,
+                                            height: 152,
+                                            elevation: 1,
+                                            color: Colors.transparent,
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  'Wind:',
+                                                  style: TextStyle(
+                                                      color: time >= 6 &&
+                                                              time < 18
+                                                          ? Color(0xff243447)
+                                                          : Colors.white,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Column(
+                                                      children: [
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              '${_weather.windSpeed}',
+                                                              style: TextStyle(
+                                                                  color: time >=
+                                                                              6 &&
+                                                                          time <
+                                                                              18
+                                                                      ? Color(
+                                                                          0xff243447)
+                                                                      : Colors
+                                                                          .white,
+                                                                  fontSize: 40),
+                                                            ),
+                                                            Column(
+                                                              children: [
+                                                                Text('KM/H',
+                                                                    style: TextStyle(
+                                                                        color: time >= 6 && time < 18
+                                                                            ? Color(
+                                                                                0xff243447)
+                                                                            : Colors
+                                                                                .white,
+                                                                        fontWeight:
+                                                                            FontWeight.w600)),
+                                                                Text('wind',
+                                                                    style: TextStyle(
+                                                                        color: time >= 6 && time < 18
+                                                                            ? Color(
+                                                                                0xff243447)
+                                                                            : Colors
+                                                                                .white,
+                                                                        fontWeight:
+                                                                            FontWeight.w600)),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        Divider(
+                                                          thickness: 2,
+                                                          height: 2,
+                                                          color: time >= 6 &&
+                                                                  time < 18
+                                                              ? Color(
+                                                                  0xff243447)
+                                                              : Colors.white,
+                                                        ),
+
+                                                        //wind degree
+                                                        Row(
+                                                          children: [
+                                                            Text(
+                                                              '${_weather.windDeg}',
+                                                              style: TextStyle(
+                                                                  color: time >=
+                                                                              6 &&
+                                                                          time <
+                                                                              18
+                                                                      ? Color(
+                                                                          0xff243447)
+                                                                      : Colors
+                                                                          .white,
+                                                                  fontSize: 40),
+                                                            ),
+                                                            Text(
+                                                              'deg',
+                                                              style: TextStyle(
+                                                                  color: time >=
+                                                                              6 &&
+                                                                          time <
+                                                                              18
+                                                                      ? Color(
+                                                                          0xff243447)
+                                                                      : Colors
+                                                                          .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(width: 20),
+                                                    Image.asset(
+                                                      'assets/compass.png',
+                                                      height: 110,
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                SizedBox(height: 20),
 
-                                  //weather conditions
-                                  Text(
-                                    (_weather?.mainCondition) ?? "",
-                                    style: GoogleFonts.pressStart2p(
-                                        textStyle: TextStyle(
-                                            fontSize: 15,
-                                            color: time >= 6 && time < 18
-                                                ? Colors.black
-                                                : Colors.white)),
-                                  ),
+                                //humidity pressure
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    //humidity container
+                                    Expanded(
+                                      child: BlurryContainer(
+                                        blur: 5,
+                                        width: 150,
+                                        height: 150,
+                                        elevation: 1,
+                                        color: Colors.transparent,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Humidity',
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: time >= 6 && time < 18
+                                                      ? Color(0xff243447)
+                                                      : Colors.white),
+                                            ),
+                                            SizedBox(height: 20),
+                                            Text(
+                                              ('${_weather.humidity}%'),
+                                              style: TextStyle(
+                                                  fontSize: 40,
+                                                  color: time >= 6 && time < 18
+                                                      ? Color(0xff243447)
+                                                      : Colors.white),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
 
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    //Pressure container
+                                    Expanded(
+                                      child: BlurryContainer(
+                                        blur: 5,
+                                        width: 150,
+                                        height: 150,
+                                        elevation: 1,
+                                        color: Colors.transparent,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Pressure',
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: time >= 6 && time < 18
+                                                      ? Color(0xff243447)
+                                                      : Colors.white),
+                                            ),
+                                            SizedBox(height: 10),
+                                            Column(
+                                              children: [
+                                                Text(
+                                                  (_weather.pressure),
+                                                  style: TextStyle(
+                                                      fontSize: 40,
+                                                      color: time >= 6 &&
+                                                              time < 18
+                                                          ? Color(0xff243447)
+                                                          : Colors.white),
+                                                ),
+                                                Text(
+                                                  'hPa',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+
+                                SizedBox(height: 20),
+                                //visibility
+                                BlurryContainer(
+                                  blur: 5,
+                                  width: double.infinity,
+                                  height: 150,
+                                  elevation: 1,
+                                  color: Colors.transparent,
+                                  child: Column(
                                     children: [
-                                      //sunrise container
-                                      BlurryContainer(
-                                        blur: 5,
-                                        width: 150,
-                                        height: 150,
-                                        elevation: 1,
-                                        color: Colors.transparent,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Image.asset(
-                                              'assets/sunrise.png',
-                                              height: 60,
-                                              width: double.infinity,
-                                            ),
-                                            Text(
-                                              'dawn:',
-                                              style: TextStyle(fontSize: 15),
-                                            ),
-                                            Text(
-                                              (AppUtils().formatUnixToLocalTime(
-                                                  _weather.sunrise.round())),
-                                              style: GoogleFonts.pressStart2p(
-                                                  textStyle: TextStyle(
-                                                      fontSize: 15,
-                                                      color:
-                                                          time >= 6 && time < 18
-                                                              ? Colors.black
-                                                              : Colors.white)),
-                                            ),
-                                          ],
-                                        ),
+                                      Text(
+                                        'Visibility',
+                                        style: TextStyle(
+                                            color: time >= 6 && time < 18
+                                                ? Color(0xff243447)
+                                                : Colors.white,
+                                            fontWeight: FontWeight.w600),
                                       ),
-
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      //sunset container
-                                      BlurryContainer(
-                                        blur: 5,
-                                        width: 150,
-                                        height: 150,
-                                        elevation: 1,
-                                        color: Colors.transparent,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Image.asset(
-                                              'assets/sunset.png',
-                                              height: 50,
-                                              width: double.infinity,
-                                            ),
-                                            Text(
-                                              'dusk:',
-                                              style: TextStyle(fontSize: 15),
-                                            ),
-                                            Text(
-                                              (AppUtils().formatUnixToLocalTime(
-                                                  _weather.sunset.round())),
-                                              style: GoogleFonts.pressStart2p(
-                                                  textStyle: TextStyle(
-                                                      fontSize: 15,
-                                                      color:
-                                                          time >= 6 && time < 18
-                                                              ? Colors.black
-                                                              : Colors.white)),
-                                            ),
-                                          ],
-                                        ),
+                                      Row(
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(100),
+                                            child: Lottie.asset(
+                                                'assets/visibility.json',
+                                                height: 100),
+                                          ),
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                          Text(
+                                            AppUtils().formatVisibilityKm(
+                                                _weather.visibility),
+                                            style: TextStyle(
+                                                color: time >= 6 && time < 18
+                                                    ? Color(0xff243447)
+                                                    : Colors.white,
+                                                fontSize: 40),
+                                          )
+                                        ],
                                       ),
                                     ],
-                                  )
-                                ],
-                              ),
-                      ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
     );

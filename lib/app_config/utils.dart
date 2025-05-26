@@ -16,9 +16,15 @@ class AppUtils {
   }
 
   String formatUnixToLocalTime(int unixSeconds) {
-    // Convert seconds to milliseconds
-    DateTime dateTime =
-        DateTime.fromMillisecondsSinceEpoch(unixSeconds * 1000).toLocal();
-    return DateFormat('HH:mm:ss').format(dateTime);
+    final utcTime =
+        DateTime.fromMillisecondsSinceEpoch(unixSeconds * 1000, isUtc: true)
+            .toLocal();
+    final utcFormatter = DateFormat('hh:mm:ss a');
+    return utcFormatter.format(utcTime.toUtc());
+  }
+
+  dynamic formatVisibilityKm(double visibility) {
+    double km = visibility / 1000.0;
+    return '${km.toStringAsFixed(1)} km';
   }
 }

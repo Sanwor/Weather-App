@@ -17,8 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Weather_app',
       theme: ThemeData(
-          textTheme:
-              GoogleFonts.pressStart2pTextTheme(Theme.of(context).textTheme)),
+          textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme)),
       home: SplashScreen(),
     );
   }
