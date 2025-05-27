@@ -141,13 +141,12 @@ class _HomePageState extends State<HomePage> {
               height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
                     colors: time >= 6 && time < 18
                         ? [
-                            Color.fromARGB(
-                                255, 151, 194, 250), // light sky blue
-                            Color(0xFFF0F9FF), // very light blue/white
+                            Color.fromRGBO(98, 161, 242, 1), // light sky blue
+                            Color.fromRGBO(186, 215, 254, 1),
                           ]
                         : [
                             Color.fromARGB(255, 2, 18, 38), // light sky blue
@@ -172,7 +171,7 @@ class _HomePageState extends State<HomePage> {
                           decoration: BoxDecoration(
                             border: Border.all(
                                 color: time >= 6 && time < 18
-                                    ? Color(0xff243447)
+                                    ? Color.fromARGB(255, 178, 199, 225)
                                     : Color.fromARGB(255, 151, 194, 250)),
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                             color: Colors.transparent,
@@ -182,11 +181,12 @@ class _HomePageState extends State<HomePage> {
                                 top: Checkbox.width, left: Checkbox.width),
                             child: Text(
                               'search',
-                              style: TextStyle(
-                                  color: time >= 6 && time < 18
-                                      ? Color(0xff243447)
-                                      : Colors.white,
-                                  fontSize: 15),
+                              style: TextStyle(shadows: <Shadow>[
+                                Shadow(
+                                    offset: Offset(2.0, 2.0),
+                                    blurRadius: 35.0,
+                                    color: Colors.blueGrey),
+                              ], color: Colors.white, fontSize: 15),
                             ),
                           ),
                         )),
@@ -226,44 +226,60 @@ class _HomePageState extends State<HomePage> {
                                           Text(
                                             'My Location',
                                             style: TextStyle(
+                                                shadows: <Shadow>[
+                                                  Shadow(
+                                                      offset: Offset(2.0, 2.0),
+                                                      blurRadius: 35.0,
+                                                      color: Colors.blueGrey),
+                                                ],
                                                 fontSize: 30,
                                                 fontWeight: FontWeight.w400,
-                                                color: time >= 6 && time < 18
-                                                    ? Color(0xff243447)
-                                                    : Colors.white),
+                                                color: Colors.white),
                                           ),
 
                                           // city name
                                           Text(
                                             (_weather?.cityName) ?? "",
                                             style: TextStyle(
+                                                shadows: <Shadow>[
+                                                  Shadow(
+                                                      offset: Offset(2.0, 2.0),
+                                                      blurRadius: 35.0,
+                                                      color: Colors.blueGrey),
+                                                ],
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.w400,
-                                                color: time >= 6 && time < 18
-                                                    ? Color(0xff243447)
-                                                    : Colors.white),
+                                                color: Colors.white),
                                           ),
 
                                           //temperature
                                           Text(
                                             ('${_weather.temperature.round()}°'),
                                             style: TextStyle(
+                                                shadows: <Shadow>[
+                                                  Shadow(
+                                                      offset: Offset(2.0, 2.0),
+                                                      blurRadius: 35.0,
+                                                      color: Colors.blueGrey),
+                                                ],
                                                 fontWeight: FontWeight.normal,
                                                 fontSize: 90,
-                                                color: time >= 6 && time < 18
-                                                    ? Color(0xff243447)
-                                                    : Colors.white),
+                                                color: Colors.white),
                                           ),
 
                                           //weather conditions
                                           Text(
                                             (_weather?.mainCondition) ?? "",
                                             style: TextStyle(
+                                                shadows: <Shadow>[
+                                                  Shadow(
+                                                      offset: Offset(1.0, 1.0),
+                                                      blurRadius: 20.0,
+                                                      color: Colors.blueGrey),
+                                                ],
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.w600,
-                                                color: time >= 6 && time < 18
-                                                    ? Color(0xff243447)
-                                                    : Colors.white),
+                                                color: Colors.white),
                                           ),
 
                                           //High Low
@@ -275,12 +291,17 @@ class _HomePageState extends State<HomePage> {
                                                 ('H:${_weather.tempMax.round()}°') ??
                                                     "",
                                                 style: TextStyle(
+                                                    shadows: <Shadow>[
+                                                      Shadow(
+                                                          offset:
+                                                              Offset(2.0, 2.0),
+                                                          blurRadius: 35.0,
+                                                          color:
+                                                              Colors.blueGrey),
+                                                    ],
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: 15,
-                                                    color:
-                                                        time >= 6 && time < 18
-                                                            ? Color(0xff243447)
-                                                            : Colors.white),
+                                                    color: Colors.white),
                                               ),
                                               SizedBox(
                                                 width: 10,
@@ -289,12 +310,17 @@ class _HomePageState extends State<HomePage> {
                                                 ('L:${_weather.tempMin.round()}°') ??
                                                     "",
                                                 style: TextStyle(
+                                                    shadows: <Shadow>[
+                                                      Shadow(
+                                                          offset:
+                                                              Offset(2.0, 2.0),
+                                                          blurRadius: 35.0,
+                                                          color:
+                                                              Colors.blueGrey),
+                                                    ],
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: 15,
-                                                    color:
-                                                        time >= 6 && time < 18
-                                                            ? Color(0xff243447)
-                                                            : Colors.white),
+                                                    color: Colors.white),
                                               ),
                                             ],
                                           ),
@@ -303,10 +329,15 @@ class _HomePageState extends State<HomePage> {
                                           Text(
                                             ('Feels like: ${_weather.feelsLike.round()}°C'),
                                             style: TextStyle(
+                                                shadows: <Shadow>[
+                                                  Shadow(
+                                                      offset: Offset(2.0, 2.0),
+                                                      blurRadius: 35.0,
+                                                      color: Colors.blueGrey),
+                                                ],
+                                                fontWeight: FontWeight.w600,
                                                 fontSize: 15,
-                                                color: time >= 6 && time < 18
-                                                    ? Color(0xff243447)
-                                                    : Colors.white),
+                                                color: Colors.white),
                                           ),
 
                                           SizedBox(
@@ -325,10 +356,7 @@ class _HomePageState extends State<HomePage> {
                                                 Text(
                                                   'Condition Right now:',
                                                   style: TextStyle(
-                                                      color: time >= 6 &&
-                                                              time < 18
-                                                          ? Color(0xff243447)
-                                                          : Colors.white,
+                                                      color: Colors.white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -370,11 +398,8 @@ class _HomePageState extends State<HomePage> {
                                                             fontSize: 15,
                                                             fontWeight:
                                                                 FontWeight.w600,
-                                                            color: time >= 6 &&
-                                                                    time < 18
-                                                                ? Color(
-                                                                    0xff243447)
-                                                                : Colors.white),
+                                                            color:
+                                                                Colors.white),
                                                       ),
                                                       Image.asset(
                                                         'assets/sunrise.png',
@@ -390,11 +415,8 @@ class _HomePageState extends State<HomePage> {
                                                             fontSize: 15,
                                                             fontWeight:
                                                                 FontWeight.w700,
-                                                            color: time >= 6 &&
-                                                                    time < 18
-                                                                ? Color(
-                                                                    0xff243447)
-                                                                : Colors.white),
+                                                            color:
+                                                                Colors.white),
                                                       ),
                                                     ],
                                                   ),
@@ -425,11 +447,8 @@ class _HomePageState extends State<HomePage> {
                                                             fontSize: 15,
                                                             fontWeight:
                                                                 FontWeight.w600,
-                                                            color: time >= 6 &&
-                                                                    time < 18
-                                                                ? Color(
-                                                                    0xff243447)
-                                                                : Colors.white),
+                                                            color:
+                                                                Colors.white),
                                                       ),
                                                       Image.asset(
                                                         'assets/sunset.png',
@@ -445,11 +464,8 @@ class _HomePageState extends State<HomePage> {
                                                             fontSize: 15,
                                                             fontWeight:
                                                                 FontWeight.w700,
-                                                            color: time >= 6 &&
-                                                                    time < 18
-                                                                ? Color(
-                                                                    0xff243447)
-                                                                : Colors.white),
+                                                            color:
+                                                                Colors.white),
                                                       ),
                                                     ],
                                                   ),
@@ -472,10 +488,7 @@ class _HomePageState extends State<HomePage> {
                                                 Text(
                                                   'Wind:',
                                                   style: TextStyle(
-                                                      color: time >= 6 &&
-                                                              time < 18
-                                                          ? Color(0xff243447)
-                                                          : Colors.white,
+                                                      color: Colors.white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 ),
@@ -498,20 +511,14 @@ class _HomePageState extends State<HomePage> {
                                                               children: [
                                                                 Text('KM/H',
                                                                     style: TextStyle(
-                                                                        color: time >= 6 && time < 18
-                                                                            ? Color(
-                                                                                0xff243447)
-                                                                            : Colors
-                                                                                .white,
+                                                                        color: Colors
+                                                                            .white,
                                                                         fontWeight:
                                                                             FontWeight.w600)),
                                                                 Text('wind',
                                                                     style: TextStyle(
-                                                                        color: time >= 6 && time < 18
-                                                                            ? Color(
-                                                                                0xff243447)
-                                                                            : Colors
-                                                                                .white,
+                                                                        color: Colors
+                                                                            .white,
                                                                         fontWeight:
                                                                             FontWeight.w600)),
                                                               ],
@@ -521,11 +528,7 @@ class _HomePageState extends State<HomePage> {
                                                         Divider(
                                                           thickness: 2,
                                                           height: 2,
-                                                          color: time >= 6 &&
-                                                                  time < 18
-                                                              ? Color(
-                                                                  0xff243447)
-                                                              : Colors.white,
+                                                          color: Colors.white,
                                                         ),
 
                                                         //wind degree
@@ -534,27 +537,15 @@ class _HomePageState extends State<HomePage> {
                                                             Text(
                                                               '${_weather.windDeg}',
                                                               style: TextStyle(
-                                                                  color: time >=
-                                                                              6 &&
-                                                                          time <
-                                                                              18
-                                                                      ? Color(
-                                                                          0xff243447)
-                                                                      : Colors
-                                                                          .white,
+                                                                  color: Colors
+                                                                      .white,
                                                                   fontSize: 40),
                                                             ),
                                                             Text(
                                                               'deg',
                                                               style: TextStyle(
-                                                                  color: time >=
-                                                                              6 &&
-                                                                          time <
-                                                                              18
-                                                                      ? Color(
-                                                                          0xff243447)
-                                                                      : Colors
-                                                                          .white,
+                                                                  color: Colors
+                                                                      .white,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w600),
@@ -575,12 +566,9 @@ class _HomePageState extends State<HomePage> {
                                                         Transform.rotate(
                                                             angle: _weather
                                                                 .windDeg,
-                                                            child: Text(
-                                                              "|",
-                                                              style: TextStyle(
-                                                                  fontSize: 35,
-                                                                  color: Colors
-                                                                      .red),
+                                                            child: Image.asset(
+                                                              'assets/arrow.png',
+                                                              height: 25,
                                                             )),
                                                       ],
                                                     )
@@ -616,18 +604,14 @@ class _HomePageState extends State<HomePage> {
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w600,
-                                                  color: time >= 6 && time < 18
-                                                      ? Color(0xff243447)
-                                                      : Colors.white),
+                                                  color: Colors.white),
                                             ),
                                             SizedBox(height: 20),
                                             Text(
                                               ('${_weather.humidity}%'),
                                               style: TextStyle(
                                                   fontSize: 40,
-                                                  color: time >= 6 && time < 18
-                                                      ? Color(0xff243447)
-                                                      : Colors.white),
+                                                  color: Colors.white),
                                             ),
                                           ],
                                         ),
@@ -656,9 +640,7 @@ class _HomePageState extends State<HomePage> {
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w600,
-                                                  color: time >= 6 && time < 18
-                                                      ? Color(0xff243447)
-                                                      : Colors.white),
+                                                  color: Colors.white),
                                             ),
                                             SizedBox(height: 10),
                                             Column(
@@ -667,18 +649,12 @@ class _HomePageState extends State<HomePage> {
                                                   (_weather.pressure),
                                                   style: TextStyle(
                                                       fontSize: 40,
-                                                      color: time >= 6 &&
-                                                              time < 18
-                                                          ? Color(0xff243447)
-                                                          : Colors.white),
+                                                      color: Colors.white),
                                                 ),
                                                 Text(
                                                   'hPa',
                                                   style: TextStyle(
-                                                      color: time >= 6 &&
-                                                              time < 18
-                                                          ? Color(0xff243447)
-                                                          : Colors.white,
+                                                      color: Colors.white,
                                                       fontWeight:
                                                           FontWeight.w600),
                                                 )
@@ -704,9 +680,7 @@ class _HomePageState extends State<HomePage> {
                                       Text(
                                         'Visibility',
                                         style: TextStyle(
-                                            color: time >= 6 && time < 18
-                                                ? Color(0xff243447)
-                                                : Colors.white,
+                                            color: Colors.white,
                                             fontWeight: FontWeight.w600),
                                       ),
                                       Row(
@@ -725,9 +699,7 @@ class _HomePageState extends State<HomePage> {
                                             AppUtils().formatVisibilityKm(
                                                 _weather.visibility),
                                             style: TextStyle(
-                                                color: time >= 6 && time < 18
-                                                    ? Color(0xff243447)
-                                                    : Colors.white,
+                                                color: Colors.white,
                                                 fontSize: 40),
                                           )
                                         ],

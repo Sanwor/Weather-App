@@ -38,7 +38,7 @@ class WeatherServices {
 
     //convert location into a list of placemark objects
     List<Placemark> placemark =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
+        await placemarkFromCoordinates(position.latitude, position.longitude);//==========================
 
     //extract the city name from first placemark
     String? city = placemark[0].locality;

@@ -129,11 +129,7 @@ class _SearchPageState extends State<SearchPage> {
                   TextField(
                     controller: searchController,
                     autofocus: true,
-                    style: TextStyle(
-                        fontSize: 18,
-                        color: isDay == false
-                            ? Color.fromARGB(255, 151, 194, 250)
-                            : Color(0xff243447)),
+                    style: TextStyle(fontSize: 18, color: Colors.white),
                     cursorColor: isDay == false
                         ? Color.fromARGB(255, 151, 194, 250)
                         : Color(0xff243447),
@@ -216,34 +212,40 @@ class _SearchPageState extends State<SearchPage> {
                                       Text(
                                         (_weather.cityName) ?? "",
                                         style: TextStyle(
+                                            shadows: <Shadow>[
+                                              Shadow(
+                                                  offset: Offset(2.0, 2.0),
+                                                  blurRadius: 35.0,
+                                                  color: Colors.blueGrey),
+                                            ],
                                             fontSize: 25,
-                                            fontWeight: FontWeight.w400,
-                                            color: isDay == false
-                                                ? Color.fromARGB(
-                                                    255, 151, 194, 250)
-                                                : Color(0xff243447)),
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white),
                                       ),
 
                                       //temperature
 
                                       Text(
                                         ('${_weather.temperature.round()}°'),
-                                        style: TextStyle(
-                                            fontSize: 90,
-                                            color: isDay == false
-                                                ? Color.fromARGB(
-                                                    255, 151, 194, 250)
-                                                : Color(0xff243447)),
+                                        style: TextStyle(shadows: <Shadow>[
+                                          Shadow(
+                                              offset: Offset(2.0, 2.0),
+                                              blurRadius: 35.0,
+                                              color: Colors.blueGrey),
+                                        ], fontSize: 90, color: Colors.white),
                                       ),
 
                                       //weather conditions
                                       Text((_weather?.mainCondition) ?? "",
                                           style: TextStyle(
+                                            shadows: <Shadow>[
+                                              Shadow(
+                                                  offset: Offset(2.0, 2.0),
+                                                  blurRadius: 35.0,
+                                                  color: Colors.blueGrey),
+                                            ],
                                             fontSize: 20,
-                                            color: isDay == false
-                                                ? Color.fromARGB(
-                                                    255, 151, 194, 250)
-                                                : Color(0xff243447),
+                                            color: Colors.white,
                                             fontWeight: FontWeight.w600,
                                           )),
 
@@ -256,11 +258,15 @@ class _SearchPageState extends State<SearchPage> {
                                             ('H:${_weather.tempMax.round()}°') ??
                                                 "",
                                             style: TextStyle(
+                                                shadows: <Shadow>[
+                                                  Shadow(
+                                                      offset: Offset(2.0, 2.0),
+                                                      blurRadius: 35.0,
+                                                      color: Colors.blueGrey),
+                                                ],
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 15,
-                                                color: isDay == true
-                                                    ? Color(0xff243447)
-                                                    : Colors.white),
+                                                color: Colors.white),
                                           ),
                                           SizedBox(
                                             width: 10,
@@ -269,11 +275,15 @@ class _SearchPageState extends State<SearchPage> {
                                             ('L:${_weather.tempMin.round()}°') ??
                                                 "",
                                             style: TextStyle(
+                                                shadows: <Shadow>[
+                                                  Shadow(
+                                                      offset: Offset(2.0, 2.0),
+                                                      blurRadius: 35.0,
+                                                      color: Colors.blueGrey),
+                                                ],
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 15,
-                                                color: isDay == true
-                                                    ? Color(0xff243447)
-                                                    : Colors.white),
+                                                color: Colors.white),
                                           ),
                                         ],
                                       ),
@@ -282,10 +292,15 @@ class _SearchPageState extends State<SearchPage> {
                                       Text(
                                         ('Feels like: ${_weather.feelsLike.round()}°C'),
                                         style: TextStyle(
+                                            shadows: <Shadow>[
+                                              Shadow(
+                                                  offset: Offset(2.0, 2.0),
+                                                  blurRadius: 35.0,
+                                                  color: Colors.blueGrey),
+                                            ],
+                                            fontWeight: FontWeight.w600,
                                             fontSize: 15,
-                                            color: isDay == true
-                                                ? Color(0xff243447)
-                                                : Colors.white),
+                                            color: Colors.white),
                                       ),
                                       SizedBox(
                                         height: 20,
@@ -303,9 +318,7 @@ class _SearchPageState extends State<SearchPage> {
                                             Text(
                                               'Condition Right now:',
                                               style: TextStyle(
-                                                  color: isDay == true
-                                                      ? Color(0xff243447)
-                                                      : Colors.white,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.w600),
                                             ),
                                             Lottie.asset(
@@ -342,14 +355,7 @@ class _SearchPageState extends State<SearchPage> {
                                                     'dawn:',
                                                     style: TextStyle(
                                                         fontSize: 15,
-                                                        color: isDay == false
-                                                            ? Color.fromARGB(
-                                                                255,
-                                                                151,
-                                                                194,
-                                                                250)
-                                                            : Color(
-                                                                0xff243447)),
+                                                        color: Colors.white),
                                                   ),
                                                   Image.asset(
                                                     'assets/sunrise.png',
@@ -363,9 +369,7 @@ class _SearchPageState extends State<SearchPage> {
                                                                 .round())),
                                                     style: TextStyle(
                                                         fontSize: 15,
-                                                        color: isDay == true
-                                                            ? Color(0xff243447)
-                                                            : Colors.white),
+                                                        color: Colors.white),
                                                   ),
                                                 ],
                                               ),
@@ -389,14 +393,7 @@ class _SearchPageState extends State<SearchPage> {
                                                     'dusk:',
                                                     style: TextStyle(
                                                         fontSize: 15,
-                                                        color: isDay == false
-                                                            ? Color.fromARGB(
-                                                                255,
-                                                                151,
-                                                                194,
-                                                                250)
-                                                            : Color(
-                                                                0xff243447)),
+                                                        color: Colors.white),
                                                   ),
                                                   Image.asset(
                                                     'assets/sunset.png',
@@ -410,9 +407,7 @@ class _SearchPageState extends State<SearchPage> {
                                                                 .round())),
                                                     style: TextStyle(
                                                         fontSize: 15,
-                                                        color: isDay == true
-                                                            ? Color(0xff243447)
-                                                            : Colors.white),
+                                                        color: Colors.white),
                                                   ),
                                                 ],
                                               ),
@@ -434,9 +429,7 @@ class _SearchPageState extends State<SearchPage> {
                                             Text(
                                               'Wind:',
                                               style: TextStyle(
-                                                  color: isDay == true
-                                                      ? Color(0xff243447)
-                                                      : Colors.white,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.w600),
                                             ),
                                             Row(
@@ -450,35 +443,23 @@ class _SearchPageState extends State<SearchPage> {
                                                         Text(
                                                           '${_weather.windSpeed}',
                                                           style: TextStyle(
-                                                              color: isDay ==
-                                                                      true
-                                                                  ? Color(
-                                                                      0xff243447)
-                                                                  : Colors
-                                                                      .white,
+                                                              color:
+                                                                  Colors.white,
                                                               fontSize: 40),
                                                         ),
                                                         Column(
                                                           children: [
                                                             Text('KM/H',
                                                                 style: TextStyle(
-                                                                    color: isDay ==
-                                                                            true
-                                                                        ? Color(
-                                                                            0xff243447)
-                                                                        : Colors
-                                                                            .white,
+                                                                    color: Colors
+                                                                        .white,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w600)),
                                                             Text('wind',
                                                                 style: TextStyle(
-                                                                    color: isDay ==
-                                                                            true
-                                                                        ? Color(
-                                                                            0xff243447)
-                                                                        : Colors
-                                                                            .white,
+                                                                    color: Colors
+                                                                        .white,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w600)),
@@ -489,9 +470,7 @@ class _SearchPageState extends State<SearchPage> {
                                                     Divider(
                                                       thickness: 2,
                                                       height: 2,
-                                                      color: isDay == true
-                                                          ? Color(0xff243447)
-                                                          : Colors.white,
+                                                      color: Colors.white,
                                                     ),
 
                                                     //wind degree
@@ -500,23 +479,15 @@ class _SearchPageState extends State<SearchPage> {
                                                         Text(
                                                           '${_weather.windDeg}',
                                                           style: TextStyle(
-                                                              color: isDay ==
-                                                                      true
-                                                                  ? Color(
-                                                                      0xff243447)
-                                                                  : Colors
-                                                                      .white,
+                                                              color:
+                                                                  Colors.white,
                                                               fontSize: 40),
                                                         ),
                                                         Text(
                                                           'deg',
                                                           style: TextStyle(
-                                                              color: isDay ==
-                                                                      true
-                                                                  ? Color(
-                                                                      0xff243447)
-                                                                  : Colors
-                                                                      .white,
+                                                              color:
+                                                                  Colors.white,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w600),
@@ -526,10 +497,21 @@ class _SearchPageState extends State<SearchPage> {
                                                   ],
                                                 ),
                                                 SizedBox(width: 20),
-                                                Image.asset(
-                                                  'assets/compass.png',
-                                                  height: 110,
-                                                )
+                                                Stack(
+                                                    alignment: Alignment.center,
+                                                    children: [
+                                                      Image.asset(
+                                                        'assets/compass.png',
+                                                        height: 110,
+                                                      ),
+                                                      Transform.rotate(
+                                                          angle:
+                                                              _weather.windDeg,
+                                                          child: Image.asset(
+                                                            'assets/arrow.png',
+                                                            height: 30,
+                                                          )),
+                                                    ])
                                               ],
                                             )
                                           ],
@@ -564,9 +546,7 @@ class _SearchPageState extends State<SearchPage> {
                                                         fontSize: 15,
                                                         fontWeight:
                                                             FontWeight.w600,
-                                                        color: isDay == true
-                                                            ? Color(0xff243447)
-                                                            : Colors.white),
+                                                        color: Colors.white),
                                                   ),
                                                   SizedBox(height: 20),
                                                   Text(
@@ -574,9 +554,7 @@ class _SearchPageState extends State<SearchPage> {
                                                         "",
                                                     style: TextStyle(
                                                         fontSize: 40,
-                                                        color: isDay == true
-                                                            ? Color(0xff243447)
-                                                            : Colors.white),
+                                                        color: Colors.white),
                                                   ),
                                                 ],
                                               ),
@@ -606,9 +584,7 @@ class _SearchPageState extends State<SearchPage> {
                                                         fontSize: 15,
                                                         fontWeight:
                                                             FontWeight.w600,
-                                                        color: isDay == true
-                                                            ? Color(0xff243447)
-                                                            : Colors.white),
+                                                        color: Colors.white),
                                                   ),
                                                   SizedBox(height: 10),
                                                   Column(
@@ -617,18 +593,13 @@ class _SearchPageState extends State<SearchPage> {
                                                         (_weather.pressure),
                                                         style: TextStyle(
                                                             fontSize: 40,
-                                                            color: isDay == true
-                                                                ? Color(
-                                                                    0xff243447)
-                                                                : Colors.white),
+                                                            color:
+                                                                Colors.white),
                                                       ),
                                                       Text(
                                                         'hPa',
                                                         style: TextStyle(
-                                                            color: isDay == true
-                                                                ? Color(
-                                                                    0xff243447)
-                                                                : Colors.white,
+                                                            color: Colors.white,
                                                             fontWeight:
                                                                 FontWeight
                                                                     .w600),
@@ -655,9 +626,7 @@ class _SearchPageState extends State<SearchPage> {
                                             Text(
                                               'Visibility',
                                               style: TextStyle(
-                                                  color: isDay == true
-                                                      ? Color(0xff243447)
-                                                      : Colors.white,
+                                                  color: Colors.white,
                                                   fontWeight: FontWeight.w600),
                                             ),
                                             Row(
@@ -677,9 +646,7 @@ class _SearchPageState extends State<SearchPage> {
                                                   AppUtils().formatVisibilityKm(
                                                       _weather.visibility),
                                                   style: TextStyle(
-                                                      color: isDay == true
-                                                          ? Color(0xff243447)
-                                                          : Colors.white,
+                                                      color: Colors.white,
                                                       fontSize: 40),
                                                 )
                                               ],
