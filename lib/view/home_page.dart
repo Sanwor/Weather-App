@@ -1,4 +1,3 @@
-import 'dart:isolate';
 
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/material.dart';
@@ -288,8 +287,7 @@ class _HomePageState extends State<HomePage> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                ('H:${_weather.tempMax.round()}°') ??
-                                                    "",
+                                                ('H:${_weather.tempMax.round()}°'),
                                                 style: TextStyle(
                                                     shadows: <Shadow>[
                                                       Shadow(
@@ -307,8 +305,7 @@ class _HomePageState extends State<HomePage> {
                                                 width: 10,
                                               ),
                                               Text(
-                                                ('L:${_weather.tempMin.round()}°') ??
-                                                    "",
+                                                ('L:${_weather.tempMin.round()}°'),
                                                 style: TextStyle(
                                                     shadows: <Shadow>[
                                                       Shadow(

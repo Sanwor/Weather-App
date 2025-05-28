@@ -67,6 +67,7 @@ class WeatherServices {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
+                      // ignore: prefer_interpolation_to_compose_strings
                       "Unauthorized " +
                           jsonDecode(response.body)["message"].toString(),
                       style: TextStyle(fontSize: 10),

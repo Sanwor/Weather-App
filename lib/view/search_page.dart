@@ -1,5 +1,4 @@
 import 'package:blurrycontainer/blurrycontainer.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
@@ -169,8 +168,8 @@ class _SearchPageState extends State<SearchPage> {
                           ],
                         )
                       : Column(
-                          children: [
-                            _weather == null
+                              children: [
+                                _weather == null
                                 ? SizedBox(
                                     child: Column(
                                       children: [
@@ -191,8 +190,8 @@ class _SearchPageState extends State<SearchPage> {
                                 : SizedBox(
                                     height: 50,
                                   ),
-                            // Weather UI
-                            _weather == null
+                                 // Weather UI
+                                _weather == null
                                 ? SizedBox(
                                     height: 500,
                                     child: Center(
@@ -255,8 +254,7 @@ class _SearchPageState extends State<SearchPage> {
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            ('H:${_weather.tempMax.round()}°') ??
-                                                "",
+                                            ('H:${_weather.tempMax.round()}°'),
                                             style: TextStyle(
                                                 shadows: <Shadow>[
                                                   Shadow(
@@ -272,8 +270,7 @@ class _SearchPageState extends State<SearchPage> {
                                             width: 10,
                                           ),
                                           Text(
-                                            ('L:${_weather.tempMin.round()}°') ??
-                                                "",
+                                            ('L:${_weather.tempMin.round()}°'),
                                             style: TextStyle(
                                                 shadows: <Shadow>[
                                                   Shadow(
@@ -345,16 +342,21 @@ class _SearchPageState extends State<SearchPage> {
                                               blur: 5,
                                               width: 150,
                                               height: 150,
-                                              elevation: 2,
+                                              elevation: 1,
                                               color: Colors.transparent,
                                               child: Column(
+                                                crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                                    MainAxisAlignment.start,
                                                 children: [
                                                   Text(
                                                     'dawn:',
                                                     style: TextStyle(
                                                         fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                         color: Colors.white),
                                                   ),
                                                   Image.asset(
@@ -369,6 +371,8 @@ class _SearchPageState extends State<SearchPage> {
                                                                 .round())),
                                                     style: TextStyle(
                                                         fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                         color: Colors.white),
                                                   ),
                                                 ],
@@ -383,9 +387,11 @@ class _SearchPageState extends State<SearchPage> {
                                               blur: 5,
                                               width: 150,
                                               height: 150,
-                                              elevation: 2,
+                                              elevation: 1,
                                               color: Colors.transparent,
                                               child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
@@ -393,6 +399,8 @@ class _SearchPageState extends State<SearchPage> {
                                                     'dusk:',
                                                     style: TextStyle(
                                                         fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                         color: Colors.white),
                                                   ),
                                                   Image.asset(
@@ -407,6 +415,8 @@ class _SearchPageState extends State<SearchPage> {
                                                                 .round())),
                                                     style: TextStyle(
                                                         fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w700,
                                                         color: Colors.white),
                                                   ),
                                                 ],
@@ -550,8 +560,7 @@ class _SearchPageState extends State<SearchPage> {
                                                   ),
                                                   SizedBox(height: 20),
                                                   Text(
-                                                    ('${_weather.humidity}%') ??
-                                                        "",
+                                                    ('${_weather.humidity}%'),
                                                     style: TextStyle(
                                                         fontSize: 40,
                                                         color: Colors.white),
