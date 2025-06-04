@@ -9,11 +9,12 @@ import '../model/weather_model.dart';
 import 'package:http/http.dart' as http;
 
 class WeatherServices {
-  static const baseUrl = "https://api.openweathermap.org/data/2.5/weather";
+  String baseUrl = AppConstant().baseUrl;
+  String apiKey = AppConstant().weatherApiKey;
 
   Future<Weather> getWeather(String cityName) async {
     final response = await http.get(
-        Uri.parse('$baseUrl?q=$cityName&appid=$weatherApiKey&units=metric'));
+        Uri.parse('$baseUrl?q=$cityName&appid=$apiKey&units=metric'));
 
     if (response.statusCode == 200) {
       var data = Weather.fromJson(jsonDecode(response.body));
@@ -38,7 +39,7 @@ class WeatherServices {
 
     //convert location into a list of placemark objects
     List<Placemark> placemark =
-        await placemarkFromCoordinates(position.latitude, position.longitude);//==========================
+        await placemarkFromCoordinates(position.latitude, position.longitude);
 
     //extract the city name from first placemark
     String? city = placemark[0].locality;
@@ -47,7 +48,7 @@ class WeatherServices {
 
   getWeatherWithCity(value, context) async {
     final response = await http
-        .get(Uri.parse('$baseUrl?q=$value&units=metric&appid=$weatherApiKey'));
+        .get(Uri.parse('$baseUrl?q=$value&units=metric&appid=$apiKey'));
 
     if (response.statusCode == 200) {
       return Weather.fromJson(jsonDecode(response.body));

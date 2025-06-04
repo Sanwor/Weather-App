@@ -43,6 +43,7 @@ dependencies:
   google_fonts: ^6.2.1
   timezone: ^0.10.1
   blurrycontainer: ^2.1.0
+  connectivity_plus: ^6.1.4
 
 dev_dependencies:
   flutter_test:

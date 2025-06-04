@@ -168,8 +168,8 @@ class _SearchPageState extends State<SearchPage> {
                           ],
                         )
                       : Column(
-                              children: [
-                                _weather == null
+                          children: [
+                            _weather == null
                                 ? SizedBox(
                                     child: Column(
                                       children: [
@@ -190,8 +190,8 @@ class _SearchPageState extends State<SearchPage> {
                                 : SizedBox(
                                     height: 50,
                                   ),
-                                 // Weather UI
-                                _weather == null
+                            // Weather UI
+                            _weather == null
                                 ? SizedBox(
                                     height: 500,
                                     child: Center(
@@ -346,8 +346,7 @@ class _SearchPageState extends State<SearchPage> {
                                               color: Colors.transparent,
                                               child: Column(
                                                 crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
+                                                    CrossAxisAlignment.center,
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
                                                 children: [
