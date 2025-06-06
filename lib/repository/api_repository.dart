@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather_app/app_config/constant.dart';
-import 'package:weather_app/services/weather_services.dart';
 
 class ApiRepo {
   // Get Base Url
@@ -12,11 +12,11 @@ class ApiRepo {
       if (response.statusCode == 200) {
         return response;
       } else {
-        print('Request failed with status: ${response.statusCode}');
+        debugPrint('Request failed with status: ${response.statusCode}');
         return null;
       }
     } on http.ClientException catch (e) {
-      print('ClientException: $e');
+      debugPrint('ClientException: $e');
     }
   }
 

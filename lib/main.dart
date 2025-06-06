@@ -1,9 +1,7 @@
 import 'dart:ui';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:weather_app/services/connection_sevices.dart';
 import 'package:weather_app/view/splash_screen.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:http/http.dart' as http;
@@ -99,7 +97,7 @@ class _GlobalConnectivityWrapperState extends State<GlobalConnectivityWrapper> {
                       sigmaY: 40,
                     ),
                     child: Container(
-                      color: Colors.black.withOpacity(0.2),
+                      color: Colors.black.withAlpha(51),
                       child: Center(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
